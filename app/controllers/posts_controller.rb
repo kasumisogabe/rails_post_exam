@@ -37,6 +37,12 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    set_post
+    @post.destroy
+    redirect_to posts_path, notice: "投稿を削除しました!"
+  end
+
   private
 
   def post_params
