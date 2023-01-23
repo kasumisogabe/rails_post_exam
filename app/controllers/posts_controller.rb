@@ -11,21 +11,24 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to new_post_path, notice: "投稿しました!"
+      redirect_to posts_path, notice: "投稿しました!"
     else
       render :new
     end
   end
 
   def show
+    set_post
     @post = Post.find(params[:id])    
   end
 
   def edit
+    set_post
     @post = Post.find(params[:id])
   end
 
   def update
+    set_post
     @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to posts_path, notice: "投稿を編集しました!"
@@ -38,5 +41,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content)
+  end
+
+  def set_post
+    @post =Post.find(params[:id])
   end
 end
