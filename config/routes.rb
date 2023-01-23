@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  # get 'posts/index'
-  get '/posts', to: 'posts#index'
+  # resourcesメソッドを使用してルーティングを設定
+  resources :posts
   end
